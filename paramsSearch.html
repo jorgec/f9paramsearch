@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>paramsSearch</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+</head>
+<body>
+
+<div class="container my-5" id="app">
+    <div class="px-4 py-5 my-5 text-center">
+        <h1 class="display-5 fw-bold text-body-emphasis">paramsSearch <small class="badge bg-danger fs-6 align-top">BETA</small></h1>
+        <div class="col-lg-6 mx-auto">
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <form id="paramsSearchForm" method="post" @submit.prevent="test()">
+                    <div class="container">
+                        <div class="row">
+                            <div class="form-floating mb-3 col">
+                                <input class="form-control" id="param" type="text" placeholder="Param" data-sb-validations="required" />
+                                <label for="param">Param</label>
+                                <div class="invalid-feedback" data-sb-feedback="param:required">Param is required.</div>
+                            </div>
+                            <div class="form-floating mb-3 col">
+                                <select class="form-select" id="dataCenter" aria-label="Data Center">
+                                    <option value="http://pcr005.scl.five9.com">Dev</option>
+                                    <option value="http://pcr004.scl.five9.com">http://pcr004.scl.five9.com</option>
+                                    <option value="http://pcr001.atl.five9.com/">http://pcr001.atl.five9.com/</option>
+                                </select>
+                                <label for="dataCenter">Data Center</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-none" id="submitSuccessMessage">
+                        <div class="text-center mb-3">
+                            <div class="fw-bolder">Form submission successful!</div>
+                            <p>To activate this form, sign up at</p>
+                            <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                        </div>
+                    </div>
+                    <div class="d-none" id="submitErrorMessage">
+                        <div class="text-center text-danger mb-3">Error sending message!</div>
+                    </div>
+                    <div class="d-grid">
+                        <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<script src="js/vue.3.3.4.global.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
