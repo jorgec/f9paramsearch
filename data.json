@@ -1,0 +1,86 @@
+[
+  {
+    "param_name": "ref to sow",
+    "param_value": "param_value",
+    "param_id": "param_id",
+    "param_parent": "param_parent",
+    "param_parent_name": "param_parent_name"
+  },
+  {
+    "param_name": "spool",
+    "param_value": "param_value",
+    "param_id": "param_id",
+    "param_parent": "param_parent",
+    "param_parent_name": "param_parent_name"
+  },
+  {
+    "param_name": "host",
+    "param_value": "param_value",
+    "param_id": "param_id",
+    "param_parent": "param_parent",
+    "param_parent_name": "param_parent_name"
+  },
+  {
+    "param_name": "port",
+    "param_value": "param_value",
+    "param_id": "param_id",
+    "param_parent": "param_parent",
+    "param_parent_name": "param_parent_name"
+  },
+  {
+    "param_name": "user",
+    "param_value": "param_value",
+    "param_id": "param_id",
+    "param_parent": "param_parent",
+    "param_parent_name": "param_parent_name"
+  },
+  {
+    "param_name": "pass",
+    "param_value": "param_value",
+    "param_id": "param_id",
+    "param_parent": "param_parent",
+    "param_parent_name": "param_parent_name"
+  },
+  {
+    "param_name": "rcpt",
+    "param_value": "param_value",
+    "param_id": "param_id",
+    "param_parent": "param_parent",
+    "param_parent_name": "param_parent_name"
+  },
+  {
+    "param_name": "dir",
+    "param_value": "param_value",
+    "param_id": "param_id",
+    "param_parent": "param_parent",
+    "param_parent_name": "param_parent_name"
+  },
+  {
+    "param_name": "Schedule",
+    "param_value": "param_value",
+    "param_id": "param_id",
+    "param_parent": "param_parent",
+    "param_parent_name": "param_parent_name"
+  },
+  {
+    "param_name": "some parameter 1",
+    "param_value": "param_value",
+    "param_id": "param_id",
+    "param_parent": "param_parent",
+    "param_parent_name": "param_parent_name"
+  },
+  {
+    "param_name": "some parameter 2",
+    "param_value": "param_value",
+    "param_id": "param_id",
+    "param_parent": "param_parent",
+    "param_parent_name": "param_parent_name"
+  },
+  {
+    "param_name": "some parameter 3",
+    "param_value": "param_value",
+    "param_id": "param_id",
+    "param_parent": "param_parent",
+    "param_parent_name": "param_parent_name"
+  }
+]

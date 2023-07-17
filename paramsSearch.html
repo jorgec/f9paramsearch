@@ -14,7 +14,7 @@
         <h1 class="display-5 fw-bold text-body-emphasis">paramsSearch <small class="badge bg-danger fs-6 align-top">BETA</small></h1>
         <div class="col-lg-6 mx-auto">
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                <form id="paramsSearchForm" method="post" @submit.prevent="test()">
+                <form id="paramsSearchForm" method="post" @submit.prevent="fetchData()">
                     <div class="container">
                         <div class="row">
                             <div class="form-floating mb-3 col">
@@ -23,32 +23,66 @@
                                 <div class="invalid-feedback" data-sb-feedback="param:required">Param is required.</div>
                             </div>
                             <div class="form-floating mb-3 col">
-                                <select class="form-select" id="dataCenter" aria-label="Data Center">
-                                    <option value="http://pcr005.scl.five9.com">Dev</option>
-                                    <option value="http://pcr004.scl.five9.com">http://pcr004.scl.five9.com</option>
-                                    <option value="http://pcr001.atl.five9.com/">http://pcr001.atl.five9.com/</option>
+                                <select class="form-select" id="dataCenter" aria-label="Data Center" v-model="dataCenterKey">
+                                    <option v-for="(dc, key) in dataCenters" :value="key">
+                                        {{ dc.label }}
+                                    </option>
                                 </select>
                                 <label for="dataCenter">Data Center</label>
                             </div>
                         </div>
                     </div>
 
-                    <div class="d-none" id="submitSuccessMessage">
-                        <div class="text-center mb-3">
-                            <div class="fw-bolder">Form submission successful!</div>
-                            <p>To activate this form, sign up at</p>
-                            <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                        </div>
-                    </div>
-                    <div class="d-none" id="submitErrorMessage">
-                        <div class="text-center text-danger mb-3">Error sending message!</div>
-                    </div>
                     <div class="d-grid">
                         <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Submit</button>
                     </div>
                 </form>
             </div>
         </div>
+    </div>
+    <div class="container-fluid">
+        <div v-if="isResponseLoading">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+
+        <div v-if="responseData">
+            <div class="alert alert-success" role="alert">
+                {{ responseMessage }}
+            </div>
+            <div v-for="(res, key) in responseData">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        {{ res.param_name }}
+                    </div>
+                    <div class="card-body">
+                        <code>{{res.param_value}}</code>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col">
+                                {{res.param_id}}
+                            </div>
+                            <div class="col">
+                                {{res.param_parent}}
+                            </div>
+                            <div class="col">
+                                {{res.param_parent_name}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div v-else>
+            <div v-if="responseMessage">
+                <div class="alert alert-danger" role="alert">
+                    {{ responseMessage}}
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 
