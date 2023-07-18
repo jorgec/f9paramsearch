@@ -1,0 +1,269 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search reports</title>
+  <!-- JQuery -->
+  <link rel="stylesheet" href="/css/jquery-ui-1.8.18.custom.css" type="text/css" />
+  <!-- FancyBox -->
+  <link rel="stylesheet" href="/css/fancybox.css" type="text/css" media="screen" />
+  <!-- Bootstrap -->
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
+  <!-- Font-awesome -->
+  <link rel="stylesheet" href="/css/font-awesome/css/font-awesome.min.css" type="text/css" />
+  <!-- Font Awesome --
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <!-- Summernote css -->
+  <link rel="stylesheet" href="/css/summernote.css" type="text/css" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/my.css" type="text/css" />
+  <link rel="stylesheet" href="/css/srch-rslt-tbl.css" type="text/css" />
+
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body onload="print_cron();">
+<div class="container">
+
+  <div class="masthead">
+    <div class="row">
+      <div class="col-sm-7">
+        <h3 class="text-muted">PS Custom Report Development Web Portal</h3>
+      </div>
+      <div class="col-sm-1 h3" style="text-align: right;">
+        <img src="/img/spinner-small.gif" alt="spinner" id="spinner-search" />
+      </div>
+      <div class="col-sm-4 h3">
+        <form id="form-search" class="navbar-right" role="search" action="/cgi-bin/search_reports.pl">
+          <div class="input-group">
+            <input type="text" class="form-control" name="filter_string" placeholder="Search custom report parameters" value="">
+            <span class="input-group-btn">
+						<button class="btn btn-default" type="submit" name="filter" value="Send">Search</button>
+					  </span>
+          </div><!-- /input-group -->
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <ul class="nav nav-justified">
+        <li><a href="/cgi-bin/index.pl"><span class="glyphicon glyphicon-dashboard"></span>&nbsp; Dashboard</a></li>
+        <li><a href="/cgi-bin/reports.pl"><span class="glyphicon glyphicon-file"></span>&nbsp; Common reports</a></li>
+        <li><a href="/Customer/spool/"><span class="glyphicon glyphicon-folder-open"></span>&nbsp; Storage SCL</a></li>
+        <li><a href="http://pcr001.atl.five9.com/Customer/spool/"><span class="glyphicon glyphicon-folder-open"></span>&nbsp; Storage ATL</a></li>							<li><a href="http://pcr001.mtl1.ca.five9.com/Customer/spool/"><span class="glyphicon glyphicon-folder-open"></span>&nbsp; Storage MTL</a></li>
+        <li><a href="http://pcr001.ldn.five9.com/Customer/spool/"><span class="glyphicon glyphicon-folder-open"></span>&nbsp; Storage LDN</a></li>
+        <li><a href="http://custreportdb001.frk1.eu.five9.com/Customer/spool/"><span class="glyphicon glyphicon-folder-open"></span>&nbsp; Storage FRK1</a></li>
+        <li><a href="http://custreportdb001.nld1.eu.five9.com/Customer/spool/"><span class="glyphicon glyphicon-folder-open"></span>&nbsp; Storage NLD1</a></li>
+        <!-- <li><a href="/cgi-bin/statistics.pl"><span class="glyphicon glyphicon-stats"></span>&nbsp; Statistics</a></li> -->
+        <li><a href="/cgi-bin/faq.pl"><span class="glyphicon glyphicon-question-sign"></span>&nbsp; FAQ</a></li>
+
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <span class="glyphicon glyphicon-cog"></span>&nbsp; Developers<span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href='sync.pl'>Sync</a></li>
+            <li><a href='knowledge_base.pl'>Knowledge Base</a></li>
+            <li><a href='team_metrics.pl'>Team Metrics</a></li>
+            <li><a href='todo.pl'>TODO list</a></li>
+            <li class="divider"></li>
+            <li><a href='/cgi-bin/Param/search.pl'>Old Version</a></li>
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+
+  <noscript>
+    <style type="text/css">
+      #content {display:none;}
+    </style>
+    <div class="h3" style="text-align: center; margin: 100px;">
+      Please enable javascript in your browser!
+    </div>
+  </noscript> <!-- checking JS enabled -->
+
+  <div id="content">
+
+    <div id="overlay"></div>
+    <div id="popup_wnd"></div>
+    <div style="display: none;"><a id="hdn_a" href="">Run_report_hdn</a></div>
+
+    <p>
+    <div class='row' style='border-bottom: 1px dashed #dadada;'>
+      <div class='col-xs-4'><h4>FedEx APAC B (CE) (137084)</h4></div>
+      <div class='col-xs-6'></div>
+      <div class='col-xs-2'><h4><a class='button' rel='dbinfobtn' href='http://dbinfo.five9.com/info/list?by=did&query=137084' target='_blank'>DB Info</a></h4></div>
+    </div>
+
+    <div class='row'>
+      <div class='col-xs-1'></div>
+      <div class='col-xs-11'>
+        <div class='row'>
+          <div class='col-xs-4'><h5>FedExAPACB_ACD_AceyusFeed</h5></div>
+          <div class='col-xs-6'></div>
+          <div class='col-xs-2'></div>
+        </div>
+        <table class='table table-condensed' style='font-size: 13px;'>
+          <tr>
+            <td class='col-xs-4'>domain_id</td>
+            <td class='col-xs-6'>137084</td>
+            <td class='col-xs-2'><a href='' style='visibility: hidden;'></a> &nbsp</td>
+          </tr>
+
+          <tr>
+            <td class='col-xs-4'>ftp_dir</td>
+            <td class='col-xs-6'>apac/five9</td>
+            <td class='col-xs-2'>
+              <a class='button'
+                 rel='chngbtn'
+                 href="/cgi-bin/Param/change_min.pl?param_id=229826&param_path=FedExAPACB_ACD_AceyusFeed/ftp_dir&top_level_name=FedExAPACB_ACD_AceyusFeed"
+                 onclick="window.open(this.href, 'Change parameter', 'height=480, width=640, toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no'); return false;" title="Restricted access">Edit</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class='col-xs-4'>ftp_host</td>
+            <td class='col-xs-6'>34.94.41.201</td>
+            <td class='col-xs-2'>
+              <a class='button'
+                 rel='chngbtn'
+                 href="/cgi-bin/Param/change_min.pl?param_id=229828&param_path=FedExAPACB_ACD_AceyusFeed/ftp_host&top_level_name=FedExAPACB_ACD_AceyusFeed"
+                 onclick="window.open(this.href, 'Change parameter', 'height=480, width=640, toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no'); return false;" title="Restricted access">Edit</a>
+              | <a class='button' rel='pingbtn' data-toggle='modal' href='/cgi-bin/ping.pl?host=34.94.41.201' data-target='#modal-ping'>Ping</a> </td>
+          </tr>
+
+          <tr>
+            <td class='col-xs-4'>ftp_password</td>
+            <td class='col-xs-6'>***</td>
+            <td class='col-xs-2'>
+              <a class='button'
+                 rel='chngbtn'
+                 href="/cgi-bin/Param/change_min.pl?param_id=229823&param_path=FedExAPACB_ACD_AceyusFeed/ftp_password&top_level_name=FedExAPACB_ACD_AceyusFeed"
+                 onclick="window.open(this.href, 'Change parameter', 'height=480, width=640, toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no'); return false;" title="Restricted access">Edit</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class='col-xs-4'>ftp_user</td>
+            <td class='col-xs-6'>aceyus_sftp</td>
+            <td class='col-xs-2'>
+              <a class='button'
+                 rel='chngbtn'
+                 href="/cgi-bin/Param/change_min.pl?param_id=229831&param_path=FedExAPACB_ACD_AceyusFeed/ftp_user&top_level_name=FedExAPACB_ACD_AceyusFeed"
+                 onclick="window.open(this.href, 'Change parameter', 'height=480, width=640, toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no'); return false;" title="Restricted access">Edit</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class='col-xs-4'>ref to SOW</td>
+            <td class='col-xs-6'>-</td>
+            <td class='col-xs-2'>
+              <a class='button find_cases'
+                 href='/cgi-bin/Param/find_sfdc_cases.pl?report=FedExAPACB_ACD_AceyusFeed&domain=FedEx APAC B (CE)'
+                 title="Find more cases"
+                 target='_blank'>Find cases</a>
+              <img src="/img/spinner-small.gif" alt="spinner" class="spinner" />
+            </td>
+          </tr>
+
+          <tr>
+            <td class='col-xs-4'>schedule</td>
+            <td class='col-xs-6'><div style='overflow-x: auto;'></div></td>
+            <td class='col-xs-2'><a href='' style='visibility: hidden;'></a> &nbsp</td>
+          </tr>
+
+          <tr>
+            <td class='col-xs-4'>Storage</td>
+            <td class='col-xs-6'>STORAGE/FedExAPACB</td>
+            <td class='col-xs-2'><a class='button' rel='linkbtn' href='/Customer/spool/FedExAPACB' target='_blank'>Open</a> </td>
+          </tr>
+
+          <tr>
+            <td class='col-xs-4'>tz_data_15min</td>
+            <td class='col-xs-6'>GMT</td>
+            <td class='col-xs-2'><a href='' style='visibility: hidden;'></a> &nbsp</td>
+          </tr>
+
+          <tr>
+            <td class='col-xs-4'>tz_data_Daily</td>
+            <td class='col-xs-6'>GMT</td>
+            <td class='col-xs-2'><a href='' style='visibility: hidden;'></a> &nbsp</td>
+          </tr>
+
+          <tr>
+            <td class='col-xs-4'>tz_timeframe_15min</td>
+            <td class='col-xs-6'>GMT</td>
+            <td class='col-xs-2'><a href='' style='visibility: hidden;'></a> &nbsp</td>
+          </tr>
+
+          <tr>
+            <td class='col-xs-4'>tz_timeframe_Daily</td>
+            <td class='col-xs-6'>Singapore</td>
+            <td class='col-xs-2'><a href='' style='visibility: hidden;'></a> &nbsp</td>
+          </tr>
+        </table></div></div></p>
+    </form>
+
+  </div><!--/#content -->
+
+  <div class="footer">
+    <p>Copyright 2001-2023 Five9, Inc. All rights reserved.</p>
+  </div>
+
+</div><!--/.container -->
+
+<!-- #modal window -->
+<img src="/img/spinner-large.gif" id="spinner-centered" />
+<div id="modal-ping" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="Ping results" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    </div>
+  </div>
+</div>
+
+
+<!-- Le Javascript -->
+<!--[if lt IE 9]>
+<script type="text/javascript" src="/js/parse_cron/ltie9.js" charset="UTF-8"></script>
+<![endif]-->
+
+<!-- JQuery -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+<script type="text/javascript" src="/js/moment-with-locales.min.js"></script>
+
+<!-- Bootstrap -->
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap-datetimepicker.js"></script>
+
+<!-- Summernote -->
+<script src="/js/summernote.min.js"></script>
+
+<!-- Show cron schedule in human readable format -->
+<script type="text/javascript" src="/js/parse_cron/later.min.js"></script>
+<script type="text/javascript" src="/js/parse_cron/prettycron.js"></script>
+<!-- / -->
+<!-- HighCharts -->
+<!-- <script src="http://code.highcharts.com/highcharts.js"></script> -->
+<script type="text/javascript" src="/js/charts/highcharts.js"></script>
+<script type="text/javascript" src="/js/charts/modules/exporting.src.js"></script>
+<script type="text/javascript" src="/js/charts/themes/sand-signika.js"></script>
+<!-- Custom -->
+<script type="text/javascript" src="/js/customrep.js?"></script>
+<!-- /// -->
+
+</body>
+</html>
+	
