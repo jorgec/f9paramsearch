@@ -58,8 +58,7 @@
                     </div>
                     <div class="card-body">
                         <code>{{res.param_value}}</code>
-                    </div>
-                    <div class="card-footer">
+                        <hr />
                         <div class="row">
                             <div class="col">
                                 {{res.param_id}}
@@ -71,6 +70,9 @@
                                 {{res.param_parent_name}}
                             </div>
                         </div>
+                    </div>
+                    <div class="card-footer">
+                        <div v-html="res.action_button"></div>
                     </div>
                 </div>
             </div>

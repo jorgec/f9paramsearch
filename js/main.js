@@ -1,8 +1,7 @@
-const { createApp, ref } = Vue
+const {createApp, ref} = Vue
 
 createApp({
     setup() {
-        const message = ref('Hello vue!')
 
         const dataCenters = ref([
             {label: "Local", url: "./data.json"},
@@ -26,17 +25,54 @@ createApp({
             try {
                 const response = await fetch(dataCenter.url)
                 this.responseMessage = "Success"
-                this.responseData = await response.json()
+                this.responseData = parseResponse(await response.json())
             } catch (error) {
                 this.responseMessage = error
             }
             this.isResponseLoading = false
         }
 
+        function parseResponse(response) {
+            for (let i = 0; i < response.length; i++) {
+                let curr = response[i];
+                let actionBtn = ""
+
+                let pname = curr["param_name"]
+                let pval = curr["param_value"]
+                let parid = curr["param_id"]
+                let pparnt = curr["param_parent"]
+                let tln = curr["param_parent_name"]
+                let domain = "tbd"
+
+                switch (pname) {
+                    case "ref to sow":
+                        actionBtn = `<a class="button find_cases" href="/cgi-bin/Param/find_sfdc_cases.pl?report=${tln}&domain=${domain}" target="_blank">Find Cases</a>`
+                        break
+                    case "spool":
+                        let tmp = pval
+                        tmp = tmp.replace(/\/\*f9pcr/gi, "/Customer")
+                        actionBtn = `<a class="button" href="${tmp}" target="_blank">Open</a>`
+                        break;
+                    case "host":
+                    case "port":
+                    case "user":
+                    case "pass":
+                    case "rcpt":
+                    case "dir":
+                        let param_path = `${tln}/${pname}`
+                        actionBtn = `<a class="button" href="/cgi-bin/Param/change_min.pl?param_id=${parid}&param_path=${param_path}&top_level_name=${tln}">Edit`
+                        break
+                }
+
+                response[i]["action_button"] = actionBtn
+
+            }
+            return response;
+        }
+
         return {
             dataCenters,
             dataCenterKey,
-            message,
             isResponseLoading,
             responseData,
             responseMessage,
